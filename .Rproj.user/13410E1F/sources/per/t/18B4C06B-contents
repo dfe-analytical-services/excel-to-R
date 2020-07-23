@@ -1,0 +1,9 @@
+---
+title: "About this Toolkit"
+---
+
+Agreed output for project should be:
+<br>1) List of how to do Excel data processing / transforming tasks in R Dplyr (Jon has started list, need to cross-ref with Ben's “Excelling in Excel” blog)
+<br>2) Video recording of doing the same data wrangling in Excel and R
+<br>3) Guidance on transitioning tools from Excel to RShiny (Ben has some slides to adapt)
+<br>4) Pointers to other useful guidance that help remove any fear of doing Excel tasks in R

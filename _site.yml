@@ -1,0 +1,8 @@
+name: "Transitioning from Excel to R - a guide"
+navbar:
+  title: "Transitioning from Excel to R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
