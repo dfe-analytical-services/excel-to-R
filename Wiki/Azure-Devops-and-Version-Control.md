@@ -28,4 +28,20 @@ With the Git window open, you can now clone the 'Transitioning from Excel to R' 
 
 ![clone.PNG](/.attachments/clone-c499b60a-1afa-470e-97b6-34a8f34e97ef.PNG)
 
+Clicking on this will bring up the credentials window. 
+
+![clone.PNG](/.attachments/clone-c499b60a-1afa-470e-97b6-34a8f34e97ef.PNG)
+
+There are several parts to this - firstly, click the copy button next to the HTTPS web address highlighted in the image. This is your repo location. However, you then need to add in your username and password, which are set out in the subsequent white check boxes (copy the password as it will be long). I recommend copy/pasting the 3 different parts to a notepad file and combining the output so that you end up with something like:
+
+```
+https://USERNAME:PASSWORD@dev.azure.com/dfe-gov-uk/Transitioning_from_Excel_to_R/_git/Transitioning_from_Excel_to_R
+```
+
+Alternatively, if you are having trouble with proxy settings, add the additional config keywords for http.proxy and http.sslVerify= false:
+
+```
+https://USERNAME:PASSWORD@dev.azure.com/dfe-gov-uk/Transitioning_from_Excel_to_R/_git/Transitioning_from_Excel_to_R --config http.proxy= --config http.sslVerify=false
+```
+
 # 
