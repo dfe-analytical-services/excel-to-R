@@ -30,7 +30,7 @@ With the Git window open, you can now clone the 'Transitioning from Excel to R' 
 
 Clicking on this will bring up the credentials window. 
 
-![clone.PNG](/.attachments/clone-c499b60a-1afa-470e-97b6-34a8f34e97ef.PNG)
+![credentials.PNG](/.attachments/credentials-ebc6da65-f177-4d87-b19d-a867a251e6d6.PNG)
 
 There are several parts to this - firstly, click the copy button next to the HTTPS web address highlighted in the image. This is your repo location. However, you then need to add in your username and password, which are set out in the subsequent white check boxes (copy the password as it will be long). I recommend copy/pasting the 3 different parts to a notepad file and combining the output so that you end up with something like:
 
