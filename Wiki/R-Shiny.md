@@ -12,11 +12,19 @@ R shiny can be installed in the same way as any other R package. In the R comman
 
 `install.packages("R shiny")`
 
-Since R Shiny is open source, there are a wide variety of pages offering a run through of the fundamental basics, as well as 
+Since R Shiny is open source, there are a wide variety of pages offering a run through of the fundamental basics, as well as thousands of blogs discussing how to run particular elements and format them in particular ways. As a starter for ten, we recommend:
+
+1) [The R Studio R shiny Tutorial](https://shiny.rstudio.com/tutorial/)
+2) [The Swirl Package](https://swirlstats.com/) - Particularly helpful if you want to increase your understanding of R more generally as well.
+3. [The original R studio R Shiny tutorial](https://rstudio.github.io/shiny/tutorial/#hello-shiny) - Now deprecated
 
 
 # R shiny app setup
 
-# Data manipulation (DataTable)
+# Data Ouputs - 
+
+## Tabular (DataTable)
+
+## Charts
 
 # Exporting data to Excel download sheets
