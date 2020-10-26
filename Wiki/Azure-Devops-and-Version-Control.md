@@ -26,6 +26,6 @@ This code will set up your basic config file to bypass the departmental proxy an
 
 With the Git window open, you can now clone the 'Transitioning from Excel to R' repo. If you navigate to the Repo folder for the project [here](https://dev.azure.com/dfe-gov-uk/_git/Transitioning_from_Excel_to_R), you will see a 'clone' button.
 
-[[img Wiki/images/clone.PNG alt=foobar]]
+![clone.PNG](/.attachments/clone-c499b60a-1afa-470e-97b6-34a8f34e97ef.PNG)
 
 # 
