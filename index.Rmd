@@ -7,3 +7,5 @@ Welcome to a set of useful tips for moving from using Excel to using R
 Need to add:
 <br>- why you would want to do this (pros/cons)
 <br>- common barriers / misconceptions
+
+Test
