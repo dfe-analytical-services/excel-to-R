@@ -44,4 +44,4 @@ Alternatively, if you are having trouble with proxy settings, add the additional
 https://USERNAME:PASSWORD@dev.azure.com/dfe-gov-uk/Transitioning_from_Excel_to_R/_git/Transitioning_from_Excel_to_R --config http.proxy= --config http.sslVerify=false
 ```
 
-# 
+If successful, the GIT bash window will start transferring the data across. You can then open the project using the Excel_to_R.proj file. Congratulations, you've successfully cloned and linked your version of the project to Azure!
