@@ -123,6 +123,8 @@ See the [DataTable options](https://datatables.net/reference/option/) page assoc
 
 ## Charts
 
-# Exporting data to Excel download sheets
+The joint risk tool includes a series of charts as part of its analysis tab.
 
-Our JRT uses the [openxlsx](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf). This package is responsible for allowing users to download filtered views of our data tables, as well as the return templates that regions fill out for reentry into the tool. It offers a variety of formatting option keywords such as freeze panes, setting custom column widths and wrapped text, assigning borders, custom data validation, and more.
+## Exporting data to Excel download sheets
+
+Our JRT uses the [openxlsx](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package. This package is responsible for allowing users to download filtered views of our data tables, as well as the return templates that regions fill out for reentry into the tool. It offers a variety of formatting option keywords such as freeze panes, setting custom column widths and wrapped text, assigning borders, custom data validation, and more.
