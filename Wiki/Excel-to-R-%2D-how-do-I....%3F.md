@@ -6,4 +6,11 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 | **Task** | **How to do in R dataframe (with dplyr)** |
 |--|--|
 | List unique entries in field (column) |  |
+| Filter/select based on criteria |   |
+| Select specific columns|   |
+|   |  |
+| If else with OR |  |
+| Countifs |  |
+| List unique entries in field (column) |  |
+
 
