@@ -34,7 +34,7 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 
 <h2>Useful other links / resources to consider:</h2>
 
- [dplyr_basic_verbs.pptx](/.attachments/dplyr_basic_verbs-032e312a-d732-4866-b303-a4f7e954b571.pptx)
+Presentation by Jon Tecwyn on some of the most common dplyr "verbs": [dplyr_basic_verbs.pptx](/.attachments/dplyr_basic_verbs-032e312a-d732-4866-b303-a4f7e954b571.pptx)
 
 data.table and dplyr tour: https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
 
