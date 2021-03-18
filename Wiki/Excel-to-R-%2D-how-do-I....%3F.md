@@ -5,8 +5,8 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 
 | **Common Excel Task** | **How to do in R dataframe (with dplyr)** |
 |--|--|
-| List unique entries in field (column) |  |
-| Filter/select based on criteria |   |
+| List unique entries in field (column) | unique(dfname\$fieldname)<br/><br/>or if factors, can do: levels(dfname\$fieldname) |
+| Filter/select based on criteria | filter(dfname, fieldname == value) <br/><br/>filter(dfname, grepl("search_term",field_name)) # filters based on containing string<br/><br/>filter(dfname, (URN == "141006" \| URN == "138262" \| URN == "141164")) # example of filtering with OR|
 | Select specific columns|   |
 |   |  |
 | If else with OR |  |
