@@ -30,9 +30,11 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 |Replace NA with zero|replace(., is.na(.), 0)|
 |Drop all rows with NA in particular column|drop_na(fieldname)|
 |Merge/join (note: you can use left_join / right_join etc instead of merge)|Inner join: merge(x = df1, y = df2, by = "CustomerId") #Return only the rows in which the left table have matching keys in the right table. <br/><br/> Outer join: merge(x = df1, y = df2, by = "CustomerId", all = TRUE) #Returns all rows from both tables, join records from the left which have matching keys in the right table.<br/><br/>  Left outer: merge(x = df1, y = df2, by = "CustomerId", all.x = TRUE) #Return all rows from the left table, and any rows with matching keys from the right table.<br/><br/> Right outer: merge(x = df1, y = df2, by = "CustomerId", all.y = TRUE) #Return all rows from the right table, and any rows with matching keys from the left table. <br/> <br/> Cross join: merge(x = df1, y = df2, by = NULL)
-|Write to CSV|e.g. [dplyr_basic_verbs.pptx](/.attachments/dplyr_basic_verbs-032e312a-d732-4866-b303-a4f7e954b571.pptx)write_csv(df_name, "school_estate/data/CMM.csv")|
+|Write to CSV|e.g.write_csv(df_name, "school_estate/data/CMM.csv")|
 
 <h2>Useful other links / resources to consider:</h2>
+
+ [dplyr_basic_verbs.pptx](/.attachments/dplyr_basic_verbs-032e312a-d732-4866-b303-a4f7e954b571.pptx)
 
 data.table and dplyr tour: https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
 
