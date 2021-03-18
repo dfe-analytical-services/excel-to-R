@@ -18,11 +18,9 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 
 <h3>Useful other links / resources to consider:</h3>
 
-https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
+data.table and dplyr tour: https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
 
-https://www.rforexcelusers.com/excel-r-function-formula-list/
+A short list of basic, commonly-used Excel formulas and their (base) R counterparts. https://www.rforexcelusers.com/excel-r-function-formula-list/
 
-https://www.r-bloggers.com/r-for-excel-users-pivot-tables-vlookups-in-r/
-
-https://github.com/dfe-analytical-services/coffee-and-coding/tree/master/20181121_sql-and-excel-to-r 
+David Sands' Coffee & Coding on SQL/Excel to R: https://github.com/dfe-analytical-services/coffee-and-coding/tree/master/20181121_sql-and-excel-to-r 
 
