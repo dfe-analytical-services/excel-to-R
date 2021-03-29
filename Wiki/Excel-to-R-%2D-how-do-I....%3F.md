@@ -6,9 +6,9 @@ dplyr logic focuses around the "pipe" **%>%** with shortcut ctrl+shift+m. Essent
 
 <h2>How to do common Excel tasks in R:</h2>
 
-| **Common Excel Task** | **How to do in R dataframe (with dplyr)** |
-|--|--|
-| List unique entries in field (column) | unique(dfname\$fieldname)<br/><br/>or if factors, can do: levels(dfname\$fieldname) |
+| **Common Excel Task** | **How to do in R dataframe (with dplyr)** |**Example with iris dataset**|
+|--|--|--|
+| List unique entries in field (column) | unique(dfname\$fieldname)<br/><br/>or if factors, can do: levels(dfname\$fieldname) |Find the unique entries for the "Species" column in iris<br/><br/>` iris %>% select(Species) %>% distinct()` |
 | Filter/select based on criteria | filter(dfname, fieldname == value) <br/><br/>filter(dfname, grepl("search_term",field_name)) # filters based on containing string<br/><br/>filter(dfname, (URN == "141006" \| URN == "138262" \| URN == "141164")) # example of filtering with OR|
 | Select specific columns| select(colname1, colname2,….) |   
 | If else with OR | e.g. mutate(var_name = ifelse(ks2_type_1718 == "AC" \| ks2_type_1718 == "ACC",1,0))  |
