@@ -4,17 +4,25 @@ The purpose of this page is to explain how to do Excel tasks in R. We focus on m
 
 dplyr logic focuses around the "pipe" **%>%** with shortcut ctrl+shift+m. Essentially everything on the left-hand side of **%>%** gets "piped" into the next argument. This avoids having long lines of code defining new outputs based on previous outputs.
 
+R comes in with a built-in dataset called "iris". We include examples applied to this dataset in the table below so that you can recreate them in your local area.
+
+**REMEMBER:** R is case sensitive, so all references to column names/entries need to be as-is in the dataset you are looking at. [Functions exist](https://www.rdocumentation.org/packages/janitor/versions/1.2.0/topics/clean_names) that can translate all your columns to lower or snake case for ease!
+
+
 <h2>How to do common Excel tasks in R:</h2>
 
-| **Common Excel Task** | **How to do in R dataframe (with dplyr)** |**Example with iris dataset**|
+| **Common Excel Task** | **How to do in R dataframe (with dplyr)** | **Example with iris dataset** |
 |--|--|--|
 | List unique entries in field (column) | unique(dfname\$fieldname)<br/><br/>or if factors, can do: levels(dfname\$fieldname) |Find the unique entries for the "Species" column in iris<br/><br/>` iris %>% select(Species) %>% distinct()` |
-| Filter/select based on criteria | filter(dfname, fieldname == value) <br/><br/>filter(dfname, grepl("search_term",field_name)) # filters based on containing string<br/><br/>filter(dfname, (URN == "141006" \| URN == "138262" \| URN == "141164")) # example of filtering with OR|
-| Select specific columns| select(colname1, colname2,….) |   
-| If else with OR | e.g. mutate(var_name = ifelse(ks2_type_1718 == "AC" \| ks2_type_1718 == "ACC",1,0))  |
-| CountIFs (count of occurences of each entry in column) | dfname %>% count(fieldname) |
+| Filter/select based on criteria | filter(dfname, fieldname == value) <br/><br/>filter(dfname, grepl("search_term",field_name)) # filters based on containing string<br/><br/>filter(dfname, (URN == "141006" \| URN == "138262" \| URN == "141164")) # example of filtering with OR|Filter for sepal length >4 and sepal width <`2.5`, but NOT "versicolor" species<br/><br/> `iris %>% filter(Sepal.Length > 4 & Sepal.Width <2.5 & Species != "versicolor")`|
+| Select specific columns| select(colname1, colname2,….) | Select only species and petal length <br/><br/>  `iris %>% select(Species, Petal.Length)`|  
+| If else with OR | e.g. mutate(var_name = ifelse(ks2_type_1718 == "AC" \| ks2_type_1718 == "ACC",1,0))  | Create new column called "size_group" based on size of petal. "Large" petals are >4 in length or >1.5 in width, everything else is "Small"<br/><br/>  ` iris %>% mutate(size_group = if_else( Petal.Length > 4 | Petal.Width >1.5, "Large", "Small"))`|
+| Multiple if else ||  Create new column called "flower_price". "Setosa" species with petal length > 3 are "top band", "Versicolor species with petal length < 4 are "low band", everything else is "mid band" <br/><br/> `iris %>%  mutate(flower_price = case_when(Species == "setosa" & Petal.Length > 1.5 ~"top band", Species == "versicolor" & Petal.Length < 4 ~"low_band", TRUE ~ "mid_band"))`
+| CountIFs (count of occurences of each entry in column) | dfname %>% count(fieldname) |Count the number of species if they have a petal length >1.5 <br/><br/> `iris %>% filter(Petal.Length > 1.5 ) %>% group_by(Species) %>% count()`|
 | Sum a column  | sum(dfname$fieldname) |
-|Arrange / sort in order| arrange(fieldname)<br/><br/>arrange(match(band,c("IL","OL","F","R")) # specific order for fieldname band|
+| SUMIF || Sum petal width of species if sepal width <`3`<br/><br/> `iris %>% filter(Sepal.Width <3) %>% group_by(Species) %>% summarise(Petal.Width = sum(Petal.Width))`|
+| VLOOKUP || Lookup to a table called "lookup" which has a list of species <br/><br/> `iris %>%  left_join(lookup, by.x="Species", by.y ="plant_species")`|
+|Arrange / sort in order| arrange(fieldname)<br/><br/>arrange(match(band,c("IL","OL","F","R")) # specific order for fieldname band|Order dataset by descending petal width <br/><br/>  `iris %>% arrange(desc(Petal.Width))` |
 |Maximum of data values in a given <em>row</em>|pmax(fieldname1,fieldname2,fieldname3)|
 |Pivot |pivot_longer() "lengthens" data, increasing the number of rows and decreasing the number of columns. <br/><br/>The inverse transformation is pivot_wider().|
 |Rename columns |rename(new_field_name = "current_field_name") # current field name must be in quote marks|
