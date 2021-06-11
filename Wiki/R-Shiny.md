@@ -123,8 +123,119 @@ See the [DataTable options](https://datatables.net/reference/option/) page assoc
 
 ## Charts
 
-The joint risk tool includes a series of charts as part of its analysis tab.
+Charts are easy to include in R Shiny, and can be handled either as static or interactive charts using the renderPlot() function. 
+
+They can be created either statically within the global.R script, or alternatively for charts that can be filtered using dropdowns, created in the server.R script and referenced within UI.R. The same keywords such as ggplot(), geom_bar() etc all apply.
+
+The below script is taken from the JRT and has an automatic check to see if there is any data. If there isn't the plot automatically defaults to a 'Data not available' message.
+
+```
+   output$financial_plot <- renderPlot({
+     if(nrow(esfa_chart_data()) == 0) {
+       # print error/ warning message
+       plot(1, 1,col="white",
+            xlab="",
+            ylab="", 
+            axes=FALSE) 
+       text(1,1,"Data not available")
+     }else{
+     p1 <- ggplot(esfa_chart_data(), aes(x=Group_ESFA, y=Count_ESFA)) +
+       geom_bar(stat="identity")+
+       geom_text(aes(x=Group_ESFA, y=Count_ESFA, label=Count_ESFA, group = Group_ESFA), color="white",
+                 position = position_stack(vjust = .5), 
+                 size = 4) +
+       # scale_fill_manual(values = grp_colours) + 
+       ggtitle("Current Financial Triggers") + 
+       xlab("Financial Trigger")
+     theme_minimal() +
+       # Modify axes and text
+       theme(axis.text.x = element_text(size = 14), 
+             axis.text.y = element_text(size = 12),
+             plot.title = element_text(size=12),
+             # remove the vertical grid lines
+             panel.grid.major.x = element_blank() ,
+             # explicitly set the horizontal lines (or they will disappear too)
+             panel.grid.major.y = element_line( size=.1, color="grey" ), 
+             panel.grid.minor.y = element_blank())
+     
+     # Access heights of bars, find largest to set new y axis
+     bar_max <- max(ggplot_build(p1)[['data']][[1]]$ymax) # where 1 is index 1st layer
+     max_y <- bar_max + (0.2* 10^(as.integer(floor(log10(bar_max)))))
+     brk_y <- ifelse(as.integer(floor(log10(max_y))) ==0, 
+                     1,
+                     ifelse(as.integer(floor(log10(max_y))) == 1, 
+                            round(max_y / 10, digits = 0), 
+                            ifelse(as.integer(floor(log10(max_y))) == 2, 
+                                   round(max_y / 10, digits = -1), 
+                                   100
+                            )))
+     
+     p1+ scale_y_continuous(name = "", 
+                            breaks = seq(0, max_y, brk_y), 
+                            limits = c(0, max_y))
+     }
+   })
+
+```
 
 ## Exporting data to Excel download sheets
 
 Our JRT uses the [openxlsx](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package. This package is responsible for allowing users to download filtered views of our data tables, as well as the return templates that regions fill out for reentry into the tool. It offers a variety of formatting option keywords such as freeze panes, setting custom column widths and wrapped text, assigning borders, custom data validation, and more.
+
+In the example code below, we:
+
+* Use addWorksheet to create a worksheet to add the trust_level_summary data table to
+* Use freezePane to set which rows and columns will be frozen/active.
+* Specify the columns we wish to include within the all_trust_summary download (which will be referenced on the UI.R script)
+* Set all cells to have borders, with cells set to have useable filter dropdowns
+* Set column widths using setColWidths()
+* Save the workbook
+
+```
+output$all_trust_summary_download <- downloadHandler(
+    filename = function() {
+      paste0("Official-Sensitive All Trust Summary ", format(Sys.time(), "%Y-%m-%d %H-%m"), ".xlsx")
+    },
+    content = function(con) {
+      output <- createWorkbook()
+      addWorksheet(output, "All Trust Summary")
+      freezePane(output, "All Trust Summary", firstActiveRow = 2, firstActiveCol = 4)
+      writeData(output, "All Trust Summary",
+                trust_level_summary %>% 
+                  select(`Trust ID`,
+                         `Company House Number`,
+                         `Trust Name`,
+                         `Trust Type`, 
+                         `Lead RSC Region`,
+                         `Lead LA`,
+                         `Subregion`,
+                         `UTC/Mixed UTC MAT`,
+                         `Faith Trust`,
+                         `No. of AP Schools`,
+                         `Current Joint Risk Grouping`,
+                         `Last month's Final Grouping`,
+                         `This month's Autogrouping`,
+                         `Educational Trigger`, 
+                         `ESFA Financial Trigger`, 
+                         `MAT Rating`,
+                         `Capital Trigger`,
+                         #`RDD Risk Group`, 
+                         `FNTI Status`,
+                         `RAT Grade`,
+                         "No. of schools with SMART  high/v high risk assessment" = `Schools with SMART high or very high risk`,
+                         `Schools currently graded Inadequate`,
+                         `No. of Months in Priority`, 
+                         `This month's RDD commentary`, 
+                         `Last month's RDD commentary`, 
+                         `This month's AMSD commentary` = "AMSD Commentary DL",
+                         `This month's Capital commentary` = "This month's Capital commentary DL"
+                  ) ,
+                borders = "all",
+                headerStyle = hs1, 
+                colNames = TRUE, withFilter = TRUE) 
+      setColWidths(output, sheet = 1, 
+                   cols = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26), 
+                   widths = c(8.47, 15, 46.33, 15, 33, 17, 33, 15, 15, 15, 27, 27, 27, 35, 15, 22, 35, 12, 15, 15, 15, 15, 62.87, 62.87, 62.87, 62.87))
+      saveWorkbook(wb = output, file = con)
+    })
+```
